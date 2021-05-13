@@ -15,7 +15,6 @@ const adicionarCarrinho = (req, res) => {
 
     for (let mercadoria of sacola[0].produtos) {
         if (mercadoria.id === produto) {
-            console.log(mercadoria);
             taNoCarrinho = true;
 
             mercadoria.quantidade += quantidade;

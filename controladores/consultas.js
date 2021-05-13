@@ -1,9 +1,4 @@
 const dados = require('../dados/data.json');
-const sacola = require('../dados/sacola');
-
-const listarCarrinho = (req, res) => {
-    res.send(sacola);
-};
 
 const listarTodos = (req, res) => {
     const categoria = req.query.categoria;
@@ -36,4 +31,4 @@ const listarTodos = (req, res) => {
     }
 };
 
-module.exports = (listarTodos, listarCarrinho);
+module.exports = listarTodos;
