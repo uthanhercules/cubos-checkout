@@ -52,6 +52,14 @@ const finalizarCompra = (req, res) => {
             }
 
             if (cpf.length === 11 && !temLetraCPF) {
+                for (let item of dados.produtos) {
+                    for (let produto of itensNaSacola) {
+                        if (item.id === produto.id) {
+                            item.estoque -= produto.quantidade;
+                        }
+                    }
+                }
+
                 sacola.push('Obrigado pela sua compra!');
                 res.send(sacola);
 
