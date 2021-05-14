@@ -1,12 +1,7 @@
-const hoje = new Date();
-const entrega = new Date();
-
-entrega.setDate(hoje.getDate() + 15);
-
 const sacola = [
     {
         subTotal: 0,
-        dataDeEntrega: entrega,
+        dataDeEntrega: '',
         valorDoFrete: 0,
         totalAPagar: 0,
         produtos: [],

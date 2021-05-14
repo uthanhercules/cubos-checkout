@@ -60,6 +60,13 @@ const finalizarCompra = (req, res) => {
                     }
                 }
 
+                const hoje = new Date();
+                const entrega = new Date();
+
+                entrega.setDate(hoje.getDate() + 15);
+
+                sacola[0].dataDeEntrega = entrega;
+
                 sacola.push('Obrigado pela sua compra!');
                 res.send(sacola);
 
@@ -68,6 +75,7 @@ const finalizarCompra = (req, res) => {
                 sacola[0].subTotal = 0;
                 sacola[0].valorDoFrete = 0;
                 sacola[0].totalAPagar = 0;
+                sacola[0].dataDeEntrega = '';
 
                 sacola.splice(1, Number.MAX_VALUE);
             } else {
