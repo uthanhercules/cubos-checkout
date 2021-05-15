@@ -30,8 +30,10 @@ const excluirItem = (req, res) => {
     sacola[0].totalAPagar = sacola[0].valorDoFrete + sacola[0].subTotal;
 
     if (existe) {
+        res.status(200);
         res.send(sacola);
     } else {
+        res.status(400);
         res.send(erros.naoTaNoCarrinho);
     }
 };

@@ -31,6 +31,7 @@ const adicionarCarrinho = (req, res) => {
         });
     } else if (item.estoque === 0) {
         console.log('O item não está disponível no estoque');
+        res.status(400);
         res.send(erros.semEstoque);
     }
 
@@ -50,6 +51,7 @@ const adicionarCarrinho = (req, res) => {
 
     sacola[0].totalAPagar = sacola[0].valorDoFrete + sacola[0].subTotal;
 
+    res.status(200);
     res.send(sacola);
 };
 

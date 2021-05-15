@@ -26,17 +26,22 @@ const finalizarCompra = (req, res) => {
     }
 
     if (!temItem) {
+        res.status(400);
         res.send(erros.carrinhoVazio);
     } else if (!temEstoque) {
+        res.status(400);
         res.send(erros.semEstoque);
     } else {
         if (dadosDoCliente.type !== 'individual') {
+            res.status(200);
             res.send('Apenas trabalhamos com clientes individuais.');
         } else if (dadosDoCliente.country !== 'br') {
+            res.status(400);
             res.send(
                 'Apenas trabalhamos com clientes em território brasileiro.'
             );
         } else if (dadosDoCliente.documents[0].type !== 'cpf') {
+            res.status(400);
             res.send('Trabalhamos apenas com pessoa física.');
         } else {
             const nome = dadosDoCliente.name.trim().split(' ');
@@ -48,6 +53,7 @@ const finalizarCompra = (req, res) => {
             if (nome.length > 1) {
                 nomeC = true;
             } else {
+                res.status(400);
                 res.send('Nome inválido.');
             }
 
@@ -68,6 +74,7 @@ const finalizarCompra = (req, res) => {
                 sacola[0].dataDeEntrega = entrega;
 
                 sacola.push('Obrigado pela sua compra!');
+                res.status(200);
                 res.send(sacola);
 
                 sacola[0].produtos = [];
@@ -79,6 +86,7 @@ const finalizarCompra = (req, res) => {
 
                 sacola.splice(1, Number.MAX_VALUE);
             } else {
+                res.status(400);
                 res.send('CPF inválido.');
             }
         }

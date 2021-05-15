@@ -6,6 +6,7 @@ const listarTodos = (req, res) => {
     const precoFinal = req.query.precoFinal;
 
     if (categoria && precoInicial && precoFinal) {
+        res.status(200);
         res.send(
             dados.produtos.filter(
                 (item) =>
@@ -15,18 +16,21 @@ const listarTodos = (req, res) => {
             )
         );
     } else if (precoInicial && precoFinal) {
+        res.status(200);
         res.send(
             dados.produtos.filter(
                 (item) => item.preco >= precoInicial && item.preco <= precoFinal
             )
         );
     } else if (categoria) {
+        res.status(200);
         res.send(
             dados.produtos.filter(
                 (item) => item.categoria === categoria && item.estoque > 0
             )
         );
     } else {
+        res.status(200);
         res.send(dados.produtos.filter((item) => item.estoque > 0));
     }
 };
